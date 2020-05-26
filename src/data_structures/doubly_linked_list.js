@@ -31,24 +31,69 @@ class DoublyLinkedList {
   }
 
   insertHead(element) {
+    // create a new node
+    // set defaults in case there is a head node already
+    let node = new this.Node({element, next:this._head(), prev: this._sentinel});
+    // before setting the head set its previous to the node which will be the head in the next line.
+    this._head().prev = node; // sentinel.next.prev = node setting the previous befor reassignment
+    this.head = node; // set the head to the new node
+    this._sentinel.next = node; //set sentinel.next to node now that it is the HEAD node
+
+    return node; // return new node/HEAD as it has the pointers to the rest of the list
   }
 
   insertTail(element) {
+    let node = new this.Node({ element, next:this._sentinel, prev:this._tail() });
+    this._tail().next = node; // if there is a tail already set its previous to the new node soon to be tail
+    this.tail = node; // set tail to new node
+    this._sentinel.prev = this.tail;
+
+    return node;
   }
 
   removeHead() {
+    return this._head().remove();
   }
 
   removeTail() {
+   return this._tail().remove();
   }
 
   remove(node) {
+    let targetNode = node;
+
+    let current = this.head;
+    while(current != this._sentinel) {
+      if (targetNode.element === current.element) {
+       return current.remove();
+      }
+      current = current.next;
+    }
+    return;
   }
 
   forEach(callback) {
+    let index = 0;
+
+    for(let node = this._head(); node !== this._sentinel; node = node.next) {
+      callback(node.element, index, this);
+      index += 1;
+    }
   }
 
+
   count() {
+    let count = 0;
+    let current = this._sentinel;
+
+    // while current.next is not the sentinel/isActive
+    while(current.next !== this._sentinel) {
+      count = count += 1;
+      if (current.next != undefined) {
+        current = current.next;
+      }
+    }
+    return count;
   }
 }
 
