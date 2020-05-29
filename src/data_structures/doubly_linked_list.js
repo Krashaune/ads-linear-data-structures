@@ -62,7 +62,7 @@ class DoublyLinkedList {
   remove(node) {
     let targetNode = node;
 
-    let current = this.head;
+    let current = this._head();
     while(current != this._sentinel) {
       if (targetNode.element === current.element) {
        return current.remove();

@@ -125,7 +125,6 @@ dataStructures.forEach(ds => {
         const elements = ['various', 'interesting', 'strings'];
         const tickets = [];
         elements.forEach(el => tickets.push(queue.enqueue(el)));
-
         expect(queue.count()).toBe(elements.length);
 
         tickets.forEach((ticket, i) => {
