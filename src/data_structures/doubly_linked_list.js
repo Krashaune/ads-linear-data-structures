@@ -72,11 +72,11 @@ class DoublyLinkedList {
     return;
   }
 
-  forEach(callback) {
+  forEach(callback, container = this) {
     let index = 0;
 
     for(let node = this._head(); node !== this._sentinel; node = node.next) {
-      callback(node.element, index, this);
+      callback(node.element, index, container);
       index += 1;
     }
   }

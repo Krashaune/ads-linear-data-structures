@@ -63,7 +63,7 @@ class DLLQueue {
    * @param {forEachCallback} callback Function to invoke
    */
   forEach(callback) {
-    this.storage.forEach(callback, this);
+    return this.storage.forEach(callback, this);
   }
 }
 
